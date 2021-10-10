@@ -182,33 +182,33 @@ export default {
         return needResize;
       }
 
-      const hemLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.6);
-      hemLight.position.set(0, 48, 0);
-      scene.add(hemLight);
+    //   const hemLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.6);
+    //   hemLight.position.set(0, 48, 0);
+    //   scene.add(hemLight);
 
-      const dirLight = new THREE.DirectionalLight(0xffffff, 0.6);
-      //光源等位置
-      dirLight.position.set(-10, 8, -5);
-      //可以产生阴影
-      dirLight.castShadow = true;
-      dirLight.shadow.mapSize = new THREE.Vector2(1024, 1024);
-      scene.add(dirLight);
+    //   const dirLight = new THREE.DirectionalLight(0xffffff, 0.6);
+    //   //光源等位置
+    //   dirLight.position.set(-10, 8, -5);
+    //   //可以产生阴影
+    //   dirLight.castShadow = true;
+    //   dirLight.shadow.mapSize = new THREE.Vector2(1024, 1024);
+    //   scene.add(dirLight);
 
-      let floorGeometry = new THREE.PlaneGeometry(1000, 1000);
-      let floorMaterial = new THREE.MeshPhongMaterial({
-        color: 0x857ebb,
-        shininess: 0,
-      });
+    //   let floorGeometry = new THREE.PlaneGeometry(1000, 1000);
+    //   let floorMaterial = new THREE.MeshPhongMaterial({
+    //     color: 0x857ebb,
+    //     shininess: 0,
+    //   });
 
-      let floor = new THREE.Mesh(floorGeometry, floorMaterial);
-      floor.rotation.x = -0.5 * Math.PI;
-      floor.receiveShadow = true;
-      floor.position.y = -0.001;
-      scene.add(floor);
+    //   let floor = new THREE.Mesh(floorGeometry, floorMaterial);
+    //   floor.rotation.x = -0.5 * Math.PI;
+    //   floor.receiveShadow = true;
+    //   floor.position.y = -0.001;
+    //   scene.add(floor);
 
-      controls.enableDamping = true;
+    //   controls.enableDamping = true;
 
-      animate();
+    //   animate();
     },
   },
 };
