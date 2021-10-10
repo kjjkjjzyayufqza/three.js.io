@@ -27,6 +27,10 @@
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
+    <div id="app">
+  <h1>Hello App!</h1>
+    <router-link to="/3dwater">3Dwater</router-link>
+</div>
   </div>
 </template>
 
@@ -37,6 +41,7 @@ export default {
     msg: String
   }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
