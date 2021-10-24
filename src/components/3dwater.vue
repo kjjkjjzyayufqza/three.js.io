@@ -1,7 +1,10 @@
 <template>
   <div>
-    hhhhhhhhhh
-    <div class="three" id="three"></div>
+    <div class="three" id="container">
+      <div class="returnbtn">
+        <button v-on:click="goBack()">BACK</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -14,34 +17,51 @@ import Stats from "three/examples/jsm/libs/stats.module.js";
 import { GUI } from "three/examples/jsm/libs/dat.gui.module";
 
 export default {
+  data() {
+    return {
+      
+    };
+  },
   name: "App",
+
   mounted() {
     this.initThree();
   },
+  destroyed() {},
   methods: {
+    goBack() {
+      // 点击返回按钮，向后跳转
+
+      this.$router.go(-1);
+    },
     initThree() {
-      let controls, water, sun, mesh, container, stats;
+      let container, stats;
+      let camera, scene, renderer;
+      let controls, water, sun, mesh;
 
-      const scene = new THREE.Scene();
-      scene.background = new THREE.Color("#eee");
+      container = document.getElementById("container");
 
-      var renderer = new THREE.WebGLRenderer({
-        antialias: true,
-        alpha: true,
-        logarithmicDepthBuffer: true,
-      });
-      // 设置渲染区域尺寸，本质就是设置输出canvas的尺寸
-      // 把渲染器的渲染结果canvas对象插入到'pos'对应的div元素中
-      renderer.shadowMap.enabled = true;
-      container = document.getElementById("three");
+      //
+
+      renderer = new THREE.WebGLRenderer();
+      // renderer.setPixelRatio(window.devicePixelRatio);
+      // renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
       container.appendChild(renderer.domElement);
-      const camera = new THREE.PerspectiveCamera(
-        50,
+
+      //
+
+      scene = new THREE.Scene();
+
+      camera = new THREE.PerspectiveCamera(
+        55,
         window.innerWidth / window.innerHeight,
-        0.1,
-        10000
+        1,
+        20000
       );
-      camera.position.set(200, 200, 400);
+      camera.position.set(30, 30, 100);
+
+      //
 
       sun = new THREE.Vector3();
 
@@ -53,7 +73,7 @@ export default {
         textureWidth: 512,
         textureHeight: 512,
         waterNormals: new THREE.TextureLoader().load(
-          "textures/waternormals.jpg",
+          "waternormals.jpg",
           function (texture) {
             texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
           }
@@ -102,7 +122,6 @@ export default {
       }
 
       updateSun();
-      updateSun();
 
       //
 
@@ -145,7 +164,7 @@ export default {
 
       function animate() {
         controls.update();
-        render()
+        render();
         requestAnimationFrame(animate);
         stats.update();
         if (resizeRendererToDisplaySize(renderer)) {
@@ -181,45 +200,23 @@ export default {
         }
         return needResize;
       }
-
-    //   const hemLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.6);
-    //   hemLight.position.set(0, 48, 0);
-    //   scene.add(hemLight);
-
-    //   const dirLight = new THREE.DirectionalLight(0xffffff, 0.6);
-    //   //光源等位置
-    //   dirLight.position.set(-10, 8, -5);
-    //   //可以产生阴影
-    //   dirLight.castShadow = true;
-    //   dirLight.shadow.mapSize = new THREE.Vector2(1024, 1024);
-    //   scene.add(dirLight);
-
-    //   let floorGeometry = new THREE.PlaneGeometry(1000, 1000);
-    //   let floorMaterial = new THREE.MeshPhongMaterial({
-    //     color: 0x857ebb,
-    //     shininess: 0,
-    //   });
-
-    //   let floor = new THREE.Mesh(floorGeometry, floorMaterial);
-    //   floor.rotation.x = -0.5 * Math.PI;
-    //   floor.receiveShadow = true;
-    //   floor.position.y = -0.001;
-    //   scene.add(floor);
-
-    //   controls.enableDamping = true;
-
-    //   animate();
     },
   },
 };
 </script>
 
-<style>
+<style scope>
 .three {
   width: 100%;
   height: 100%;
   position: fixed;
   left: 0;
   top: 0;
+}
+.returnbtn {
+  position: absolute;
+  border-radius: 10px;
+  bottom: 0;
+  z-index: 99999 !important;
 }
 </style>

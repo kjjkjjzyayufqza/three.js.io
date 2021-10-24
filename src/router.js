@@ -6,6 +6,7 @@ import HelloWorld from "@/components/HelloWorld";
 import List from "@/components/list";
 import About from "@/components/about";
 import water from "@/components/3dwater";
+import Animejs from "@/components/animejs";
 
 Vue.use(Router);
 
@@ -15,5 +16,6 @@ export default new Router({
     { path: "/list", name: "List", component: List },
     { path: "/about", name: "Aabout", component: About },
     { path: "/3dwater", name: "3dwater", component: water },
+    { path: "/animejs", name: "animejs", component: Animejs },
   ],
 });

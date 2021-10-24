@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@cyrilf/vue-dat-gui": "^0.3.0",
+    "animejs": "^3.2.1",
     "core-js": "^3.6.5",
     "jquery": "^3.6.0",
     "three": "^0.133.1",
